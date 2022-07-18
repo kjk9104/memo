@@ -30,10 +30,10 @@ public class TestController {
 		return map;
 	}
 	
-	// http://localhost/test/3
-	@RequestMapping("/test/3")
+	// http://localhost/template/layout
+	@RequestMapping("/template/layout")
 	public String testJsp() {
-		return "/test/test";
+		return "/template/layout";
 	}
 	
 }
