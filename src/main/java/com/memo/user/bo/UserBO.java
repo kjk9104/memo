@@ -15,4 +15,19 @@ public class UserBO {
 	public List<User> getUserList(){
 		return userDAO.selectUserList();
 	}
+	
+	public boolean existLoginId(String loginId) {
+		return userDAO.existLoginId(loginId);
+	}
+	
+	public void addUser(
+			String loginId
+			,String encryptPassword
+			,String name
+			,String email
+			) {
+			userDAO.insertUser(loginId, encryptPassword, name, email);
+		
+		
+	}
 }
