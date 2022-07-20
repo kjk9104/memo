@@ -30,4 +30,8 @@ public class UserBO {
 		
 		
 	}
+	
+	public User getUserByLoginIdPassword(String loginId, String encryptPassword) {
+		return userDAO.selectUserByLoginIdPassword(loginId, encryptPassword);
+	}
 }

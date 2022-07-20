@@ -13,3 +13,9 @@ footer{ height : 100px;}
 footer>div{
 	height : 100px;
 }
+#loginBox{
+	height: 300px;
+}
+#loginHeader{
+	height: 200px;
+}

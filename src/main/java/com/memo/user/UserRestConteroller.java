@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +45,14 @@ public class UserRestConteroller {
 		
 	}
 	
-	
+	/**
+	 * 회원 가입 API
+	 * @param loginId
+	 * @param password
+	 * @param name
+	 * @param email
+	 * @return
+	 */
 	@PostMapping("/sign_up")
 	public Map<String,Object> signUp(
 			@RequestParam("loginId") String loginId
@@ -64,5 +74,38 @@ public class UserRestConteroller {
 		return result;
 		
 	}
+	
+	@PostMapping("/sign_in")
+	public Map<String, Object>signIn(
+			@RequestParam("loginId") String loginId
+			,@RequestParam("password") String password
+			,HttpServletRequest request
+			){
+			// 비밀번호 해싱
+			String encryptPassword = EncryptUtils.md5(password);
+			
+			// loginId, 해싱비번 => DB 셀렉트 => 존재 유무
+			User user = userBO.getUserByLoginIdPassword(loginId, encryptPassword);
+			
+			Map<String, Object> result = new HashMap<>();
+			
+			if(user != null) {
+				// 로그인 성공하면 세션에 정보를 담는다.
+				HttpSession session = request.getSession();
+				session.setAttribute("userId", user.getId());
+				session.setAttribute("userLoginId", user.getLoginId());
+				session.setAttribute("userName", user.getName());
+				
+				result.put("result", "success");
+			} else {
+				// 실패 하면 실패 응답
+				result.put("errorMessage", "존재하지 않는 사용자입니다. 관리자에게 문의해주세요.");
+			}
+			//로그인 성공 유무 response
+			
+			result.put("result", "success");
+			return result;
+	}
+
 
 }
