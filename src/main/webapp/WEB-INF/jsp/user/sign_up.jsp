@@ -68,7 +68,7 @@ $(document).ready(function(){
 			, error :  function(e) {
 				alert("아이디 중복체크에 실패했습니다.");
 			}
-		})
+		});
 	});
 	
 // 	회원 가입
