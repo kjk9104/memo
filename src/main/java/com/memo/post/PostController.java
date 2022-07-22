@@ -1,13 +1,18 @@
 package com.memo.post;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.memo.post.bo.PostBO;
+
 @RequestMapping("/post")
 @Controller
 public class PostController {
-
+	@Autowired
+	private PostBO postBO;
+	
 	// http://localhost/post/post_list_view
 	@RequestMapping("/post_list_view")
 	public String postListView(Model model) {
