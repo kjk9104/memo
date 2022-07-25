@@ -24,4 +24,32 @@
  			)
  		
  	</insert>
+ 	
+ 	<select id="selectPost" resultType="com.memo.post.model.Post">
+ 		SELECT 
+ 			`id`
+			,`userId`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`post`
+ 	</select>
+ 	
+ 	<select id="selectPostById" parameterType="int" resultType="com.memo.post.model.Post">
+ 		SELECT 
+ 			`id`
+			,`userId`
+			,`subject`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+ 	</select>
  </mapper>

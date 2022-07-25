@@ -14,14 +14,16 @@
 					<th>수정날짜</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
+			<c:forEach var="post" items="${postList}" varStatus="status">
+				<tbody>
+					<tr>
+						<td>${post.id}</td>
+						<td><a href="/post/post_detail_view?postId=${post.id}">${post.subject}<a></td>
+						<td>${post.createdAt}</td>
+						<td>${post.updatedAt}</td>
+					</tr>
+				</tbody>
+			</c:forEach>
 		</table>
 		
 		<div class="float-right">
@@ -29,3 +31,5 @@
 		</div>
 	</div>
 </div>
+
+	
