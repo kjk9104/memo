@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.memo.post.model.Post;
 import com.memo.user.dao.UserDAO;
 import com.memo.user.model.User;
 @Service
@@ -34,4 +35,6 @@ public class UserBO {
 	public User getUserByLoginIdPassword(String loginId, String encryptPassword) {
 		return userDAO.selectUserByLoginIdPassword(loginId, encryptPassword);
 	}
+	
+
 }
