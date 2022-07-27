@@ -4,7 +4,7 @@ header {
 	height : 100px;
 	padding:20px;
 	}
-.content{height : 600px;}
+.content{min-height : 600px; margin: 20px;}
 footer{ height : 100px;}
 
 .signSection{

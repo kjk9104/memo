@@ -50,7 +50,23 @@ public class FileManagerSevice {
 		
 		return null;
 		
+	}
+	public void deleteFile(String imagePath) throws IOException {
+		// imagePath = /images/test2_1658477109450/5124630.png
+		// "D:\\kyu\\Spring_project\\memo\\workspace\\images/ "
+		// 전체 경로와 imagePath간의 중복되는 /images/ 문자영을 제거한 후 실제 저장 경로를 찾는다.
 		
+		imagePath = imagePath.replace("/images/",""); // /test2_1658477109450/5124630.png
+		Path path = Paths.get(FILE_UPLODE_PATH + imagePath);
+		if (Files.exists(path)) { // 이미지 파일이 있으면 삭제
+			Files.delete(path);
+		}
+		
+		// 디렉토리(폴더) 삭제
+		path = path.getParent();
+		if(Files.exists(path)) { // 폴더가 있으면 삭제
+			Files.delete(path);
+		}
 		
 	}
 }
