@@ -18,9 +18,11 @@
 				<tbody>
 					<tr>
 						<td>${post.id}</td>
-						<td><a href="/post/post_detail_view?postId=${post.id}">${post.subject}<a></td>
-						<td>${post.createdAt}</td>
-						<td>${post.updatedAt}</td>
+						<td><a href="/post/post_detail_view?postId=${post.id}">${post.subject}</a></td>
+						<fmt:formatDate var="createdAt" value="${post.createdAt}" pattern="yyyy-MM-dd HH:mm"/>
+						<fmt:formatDate var="updatedAt" value="${post.updatedAt}" pattern="yyyy-MM-dd HH:mm"/>
+						<td>${createdAt}</td>
+						<td>${updatedAt}</td>
 					</tr>
 				</tbody>
 			</c:forEach>

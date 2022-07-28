@@ -36,6 +36,9 @@
 			,`updatedAt`
 		FROM
 			`post`
+		ORDER BY
+			`id`
+		DESC
  	</select>
  	
  	<select id="selectPostById" parameterType="int" resultType="com.memo.post.model.Post">
@@ -66,4 +69,12 @@
 			AND 
 			  `userId` = #{userId} ;
  	</update>
+ 	<delete id="deletePost" parameterType="map">
+ 		DELETE FROM
+ 			`post`
+ 		WHERE
+ 			`id`= #{postId} 
+ 			AND 
+			 `userId` = #{userId} ;
+ 	</delete>
  </mapper>

@@ -79,4 +79,25 @@ public class PostBO {
 		// update
 		return postDAO.updatePostByPostIdandUserId(userId, postId, subject, content, imagePath);
 	}
+	
+		//delete
+	public void deletePost(int postId, int userId) {
+		// 삭제 전에 게시글을 먼저 가져와본다.(imgePath가 있을 수 있기 때문에)
+		Post post = getPostById(postId);
+		if(post ==  null) {
+			logger.error("[delete post] 삭제할 게시글이 존재하지 않습니다. postId:{}", postId);
+			return;
+		}
+		// imagePath가 있으면 이미지 삭제(파일) 처리
+		if(post.getImagePath() != null) {
+			try {
+				fileManager.deleteFile(post.getImagePath());
+			} catch (IOException e) {
+				logger.error("[delete post] 이미지 삭제 실패. postId:{}", postId);
+			}
+		}
+		// db delete 행 삭제
+		
+		postDAO.deletePost(postId, userId);
+	}
 }

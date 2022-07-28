@@ -18,7 +18,7 @@
 		</div>
 		</c:if>
 		<div class="d-flex justify-content-between">
-				<button id="postDeleteBtn" type="button" class="btn btn-secondary">삭제</button>
+				<button id="postDeleteBtn" type="button" class="btn btn-secondary" data-post-id="${post.id}">삭제</button>
 			<div>
 				<a href="http://localhost/post/post_list_view" id="postListBtn" class="btn btn-dark">목록으로</a>
 				<button id="savaBtn" type="button" class="btn btn-primary" data-post-id="${post.id}">저장</button>
@@ -86,11 +86,29 @@ $(document).ready(function(){
 	});
 	
 	$('#postDeleteBtn').on('click', function(){
-		alert("삭제버튼");
-	})
-	
-// 	$('.image-area').on('change',function()){
+		let postId = $(this).data('post-id');
+		// alert(postId);
 		
-// 	}
+		$.ajax({
+			type : "DELETE"
+			,url : "/post/delete"
+			,data : { "postId" : postId }
+			,success : function(data){
+				if(data.result == "success"){
+					alert("삭제 되었습니다.")
+					location.href = "/post/post_list_view";					
+				}else{
+					alert(data.errorMessage);
+				}
+			}
+			,error :  function(e){
+				alert("삭제 실패");
+			}
+			
+		});
+		
+	});
+		
+	
 });
 </script>
