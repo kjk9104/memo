@@ -75,6 +75,6 @@
  		WHERE
  			`id`= #{postId} 
  			AND 
-			 `userId` = #{userId} ;
+			 `userId` = #{userId}
  	</delete>
  </mapper>
