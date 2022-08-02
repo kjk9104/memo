@@ -97,7 +97,7 @@ public class PostBO {
 			}
 		}
 		// db delete 행 삭제
-		
+		// ###########
 		postDAO.deletePost(postId, userId);
 	}
 }
